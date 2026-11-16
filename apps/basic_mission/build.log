@@ -1,0 +1,31 @@
+Please note: At least one path in EXTERNAL_MODULE_DIRS does not exist
+Building application "thingsat_basic_mission" for "nucleo-l432kc-protoseed" with CPU "stm32".
+
+"gmake" -C /home/timmalaise/thingsat_dev/RIOT/pkg/cmsis/ 
+"gmake" -C /home/timmalaise/thingsat_dev/RIOT/pkg/driver_bme680/ 
+"gmake" -C /home/timmalaise/thingsat_dev/RIOT/build/pkg/driver_bme680 -f /home/timmalaise/thingsat_dev/RIOT/Makefile.base
+"gmake" -C /home/timmalaise/thingsat_dev/RIOT/pkg/mpaland-printf/ 
+"gmake" -C /home/timmalaise/thingsat_dev/RIOT/build/pkg/mpaland-printf -f /home/timmalaise/thingsat_dev/RIOT/pkg/mpaland-printf/mpaland-printf.mk
+[01m[K/home/timmalaise/thingsat_dev/riot_modules_ce26/apps/basic_mission/tle_utils.c:[m[K In function '[01m[Kinit_tle[m[K':
+[01m[K/home/timmalaise/thingsat_dev/riot_modules_ce26/apps/basic_mission/tle_utils.c:78:27:[m[K [01;31m[Kerror: [m[Kunused parameter '[01m[Ktle_name[m[K' [[01;31m[K-Werror=unused-parameter[m[K]
+   78 | void init_tle([01;31m[Kconst char* tle_name[m[K, const char* tle_line1, const char* tle_line2) {
+      |               [01;31m[K~~~~~~~~~~~~^~~~~~~~[m[K
+[01m[K/home/timmalaise/thingsat_dev/riot_modules_ce26/apps/basic_mission/tle_utils.c:78:49:[m[K [01;31m[Kerror: [m[Kunused parameter '[01m[Ktle_line1[m[K' [[01;31m[K-Werror=unused-parameter[m[K]
+   78 | void init_tle(const char* tle_name, [01;31m[Kconst char* tle_line1[m[K, const char* tle_line2) {
+      |                                     [01;31m[K~~~~~~~~~~~~^~~~~~~~~[m[K
+[01m[K/home/timmalaise/thingsat_dev/riot_modules_ce26/apps/basic_mission/tle_utils.c:78:72:[m[K [01;31m[Kerror: [m[Kunused parameter '[01m[Ktle_line2[m[K' [[01;31m[K-Werror=unused-parameter[m[K]
+   78 | void init_tle(const char* tle_name, const char* tle_line1, [01;31m[Kconst char* tle_line2[m[K) {
+      |                                                            [01;31m[K~~~~~~~~~~~~^~~~~~~~~[m[K
+[01m[K/home/timmalaise/thingsat_dev/riot_modules_ce26/apps/basic_mission/tle_utils.c:[m[K In function '[01m[Kpredict_gps_from_tle_at_epoch[m[K':
+[01m[K/home/timmalaise/thingsat_dev/riot_modules_ce26/apps/basic_mission/tle_utils.c:91:43:[m[K [01;31m[Kerror: [m[Kunused parameter '[01m[KsecondsSinceEpoch[m[K' [[01;31m[K-Werror=unused-parameter[m[K]
+   91 | void predict_gps_from_tle_at_epoch([01;31m[Ktime_t secondsSinceEpoch[m[K, double* p_dlat, double* p_dlon) {
+      |                                    [01;31m[K~~~~~~~^~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/timmalaise/thingsat_dev/riot_modules_ce26/apps/basic_mission/tle_utils.c:91:70:[m[K [01;31m[Kerror: [m[Kunused parameter '[01m[Kp_dlat[m[K' [[01;31m[K-Werror=unused-parameter[m[K]
+   91 | void predict_gps_from_tle_at_epoch(time_t secondsSinceEpoch, [01;31m[Kdouble* p_dlat[m[K, double* p_dlon) {
+      |                                                              [01;31m[K~~~~~~~~^~~~~~[m[K
+[01m[K/home/timmalaise/thingsat_dev/riot_modules_ce26/apps/basic_mission/tle_utils.c:91:86:[m[K [01;31m[Kerror: [m[Kunused parameter '[01m[Kp_dlon[m[K' [[01;31m[K-Werror=unused-parameter[m[K]
+   91 | void predict_gps_from_tle_at_epoch(time_t secondsSinceEpoch, double* p_dlat, [01;31m[Kdouble* p_dlon[m[K) {
+      |                                                                              [01;31m[K~~~~~~~~^~~~~~[m[K
+cc1: all warnings being treated as errors
+gmake[1]: *** [/home/timmalaise/thingsat_dev/RIOT/Makefile.base:162: /home/timmalaise/thingsat_dev/riot_modules_ce26/apps/basic_mission/bin/nucleo-l432kc-protoseed/application_thingsat_basic_mission/tle_utils.o] Error 1
+gmake: *** [/home/timmalaise/thingsat_dev/RIOT/Makefile.include:684: application_thingsat_basic_mission.module] Error 2

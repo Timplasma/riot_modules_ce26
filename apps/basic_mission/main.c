@@ -137,6 +137,10 @@ int sensors_get_all_temp(int argc, char **argv)
 static const shell_command_t shell_commands[] = { { "git", "Show git info",
 		git_cmd }, { "lgw", "LoRa gateway commands", lgw_cmd },
 
+#if GPS_UART_ENABLE == 1
+	{ "gps", "GPS commands", gps_cmd },
+#endif
+
 #if defined(MODULE_STTS751) || defined(STTS751_CORECELL_I2C_ADDR)
     { "temp", "Get the temperatures (Celsius)", sensors_get_all_temp },
 #endif

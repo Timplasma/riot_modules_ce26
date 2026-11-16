@@ -1413,7 +1413,7 @@ static int lgw_listen_cmd(int argc, char **argv) {
 #endif
 	_listen_thread_pid = thread_create(_listen_thread_stack,
 			sizeof(_listen_thread_stack), THREAD_PRIORITY_MAIN - 1,
-			THREAD_CREATE_STACKTEST, _listen_thread, NULL, "LGW_LISTEN");
+			THREAD_CREATE_NO_STACKTEST, _listen_thread, NULL, "LGW_LISTEN");
 
 	if (_listen_thread_pid <= KERNEL_PID_UNDEF) {
 		printf("ERROR: Creation of rx thread failed\n");

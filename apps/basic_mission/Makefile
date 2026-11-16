@@ -1,8 +1,7 @@
 #
 # Copyright (C) 2021-2026 Université Grenoble Alpes
 #
-RIOTBASE ?= ${HOME}/github/RIOT-OS/RIOT
-
+RIOTBASE ?= ${HOME}/thingsat_dev/RIOT
 APPLICATION=thingsat_basic_mission
 
 BOARD ?= nucleo-l432kc-protoseed
@@ -160,7 +159,7 @@ USEMODULE += i2c_scan_utils
 # Zone of Interest Module
 # -----------------------------
 
-ZOI_ENABLE ?= 1
+ZOI_ENABLE = 0
 
 ifeq ($(ZOI_ENABLE),1)
 include Makefile.zoi.mk
@@ -179,6 +178,8 @@ include Makefile.lgw.mk
 # -----------------------------
 # GNSS Module
 # -----------------------------
+GPS_UART_ENABLE = 1
+
 ifeq ($(GPS_UART_ENABLE),1)
 include Makefile.gnss.mk
 endif

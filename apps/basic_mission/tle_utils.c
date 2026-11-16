@@ -81,6 +81,10 @@ void init_tle(const char* tle_name, const char* tle_line1, const char* tle_line2
     if(instance == NULL) {
     	instance = P13Predict_new(tle_name, tle_line1, tle_line2);
     }
+#else
+	(void)tle_name;
+	(void)tle_line1;
+	(void)tle_line2;
 #endif
 }
 
@@ -101,8 +105,11 @@ void predict_gps_from_tle_at_epoch(time_t secondsSinceEpoch, double* p_dlat, dou
 	);
 
 	P13Predict_latlon(instance, p_dlat, p_dlon);
+#else
+	(void)secondsSinceEpoch;
+	(void)p_dlat;
+	(void)p_dlon;
 #endif
 }
-
 
 
