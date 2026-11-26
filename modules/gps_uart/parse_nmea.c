@@ -646,7 +646,10 @@ void parse_nmea(uint8_t c) {
 				mutex_unlock(&gps_mutex);
 
 				if (error_cnt > GPS_UART_ENABLE_ERROR_MAX_BEFORE_RESTART) {
+#if GPS_I2C_ENABLE != 1
+					/* gps_restart() resets the UART transport: not relevant over I2C */
 					gps_restart();
+#endif
 					error_cnt = 0;
 					nmea_buffer_idx = 0;
 					return;
@@ -681,6 +684,9 @@ void gps_print(void) {
 	printf("INFO: GNSS Stats valid=%lu badchecksum=%lu error=%lu unknown=%lu\n",
 			parse_nmea_global_valid, parse_nmea_global_badchecksum,
 			parse_nmea_global_error, parse_nmea_global_unknown);
+#if GPS_I2C_ENABLE == 1
+	gps_i2c_print_stats();
+#endif
 	printf("INFO: GNSS Last fix time : %lu (%u seconds ago)\n", last_fix_time,
 			seconds_since_last_fix);
 

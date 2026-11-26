@@ -29,6 +29,7 @@
 #include "ztimer.h"
 
 #include "parse_nmea.h"
+#include "gps_uart.h"
 
 #ifdef MODULE_STDIO_UART
 #include "stdio_uart.h"
@@ -334,6 +335,12 @@ int gps_cmd(int argc, char **argv) {
     } else if(argc == 2 && (strcmp(argv[1],"poweroff")==0)) {
     	_gnss_power_off();
         return 0;
+#endif
+#if GPS_I2C_ENABLE == 1
+    } else if(argc >= 2 && (strcmp(argv[1],"init")==0)) {
+        /* starting the UART reader would feed parse_nmea() from two threads */
+        puts("ERROR: GNSS is read over I2C (GPS_I2C_ENABLE=1): UART init is disabled");
+        return 1;
 #endif
     } else if(argc == 4 && (strcmp(argv[1],"init")==0)) {
         const int dev = parse_dev(argv[2]);

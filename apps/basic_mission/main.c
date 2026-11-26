@@ -181,9 +181,14 @@ int main(void) {
 #if GPS_UART_ENABLE == 1
 	puts("INFO: Starting the GNSS parsing ...");
 
+#if GPS_I2C_ENABLE == 1
+	// NMEA sentences are read over I2C (eg XA1110 at 0x10) instead of UART
+	gps_i2c_start();
+#else
 	printf("GPS_UART_DEV: %d\n", GPS_UART_DEV);
 	printf("GPS_BAUDRATE: %d\n", GPS_BAUDRATE);
 	gps_start(GPS_UART_DEV,GPS_UART_BAUDRATE);
+#endif
 #else
 	puts("WARN: No GNSS module");
 #endif
