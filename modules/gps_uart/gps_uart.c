@@ -59,6 +59,9 @@
 #define STX 0x2
 #endif
 
+static volatile uint32_t gps_rx_bytes = 0;
+static volatile uint32_t gps_rx_dropped_bytes = 0;
+
 typedef struct {
 	uint8_t rx_mem[UART_BUFSIZE];
     //ringbuffer_t rx_buf;
@@ -95,13 +98,24 @@ static void rxs_cb(void *arg)
 
 bool stop_gps_uart = false;
 
+uint32_t gps_uart_get_rx_bytes(void)
+{
+    return gps_rx_bytes;
+}
+
+uint32_t gps_uart_get_rx_dropped_bytes(void)
+{
+    return gps_rx_dropped_bytes;
+}
+
 static void rx_cb(void *arg, uint8_t c)
 {
+    gps_rx_bytes++;
+
     uart_t dev = (uart_t)(uintptr_t)arg;
 
-    if(tsrb_full(&ctx[dev].rx_buf)) {
-    	// drop char
-    	// printf("DROP\n");
+    if (tsrb_full(&ctx[dev].rx_buf)) {
+        gps_rx_dropped_bytes++;
     } else {
         tsrb_add_one(&ctx[dev].rx_buf, c);
     }
@@ -112,6 +126,24 @@ static void rx_cb(void *arg, uint8_t c)
         msg_send(&msg, printer_pid);
     }
 }
+
+// static void rx_cb(void *arg, uint8_t c)
+// {
+//     uart_t dev = (uart_t)(uintptr_t)arg;
+
+//     if(tsrb_full(&ctx[dev].rx_buf)) {
+//     	// drop char
+//     	// printf("DROP\n");
+//     } else {
+//         tsrb_add_one(&ctx[dev].rx_buf, c);
+//     }
+
+//     if (!test_mode) {
+//         msg_t msg;
+//         msg.content.value = (uint32_t)dev;
+//         msg_send(&msg, printer_pid);
+//     }
+// }
 
 static void *printer(void *arg)
 {

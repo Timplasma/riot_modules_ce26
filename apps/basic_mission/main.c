@@ -183,7 +183,8 @@ int main(void) {
 
 	printf("GPS_UART_DEV: %d\n", GPS_UART_DEV);
 	printf("GPS_BAUDRATE: %d\n", GPS_BAUDRATE);
-	gps_start(GPS_UART_DEV,GPS_UART_BAUDRATE);
+	// gps_start(GPS_UART_DEV,GPS_UART_BAUDRATE);
+	gps_start(GPS_UART_DEV, GPS_BAUDRATE);
 #else
 	puts("WARN: No GNSS module");
 #endif

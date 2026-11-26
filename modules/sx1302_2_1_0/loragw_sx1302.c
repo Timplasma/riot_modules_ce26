@@ -288,10 +288,12 @@ int sx1302_init(const struct lgw_conf_ftime_s * ftime_context) {
             return LGW_REG_ERROR;
         }
 
-        if (model_id != CHIP_MODEL_ID_SX1303) {
-            printf("ERROR: Fine Timestamping is not supported on this Chip Model ID 0x%02X\n", model_id);
-            return LGW_REG_ERROR;
-        }
+        // if (model_id != CHIP_MODEL_ID_SX1303) {
+        //     printf(model_id);
+        //     printf(CHIP_MODEL_ID_SX1303);
+        //     printf("ERROR: Fine Timestamping is not supported on this Chip Model ID 0x%02X\n", model_id);
+        //     return LGW_REG_ERROR;
+        // }
     }
     x = timestamp_counter_mode(ftime_context->enable);
     if (x != LGW_REG_SUCCESS) {

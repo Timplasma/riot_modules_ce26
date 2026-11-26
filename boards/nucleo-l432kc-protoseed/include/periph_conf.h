@@ -58,8 +58,8 @@ static const uart_conf_t uart_config[] = {
 	{
         .dev        = USART1,
         .rcc_mask   = RCC_APB2ENR_USART1EN,
-        .rx_pin     = GPIO_PIN(PORT_B, 6),  // Nano D4
-        .tx_pin     = GPIO_PIN(PORT_B, 7),	// Nano D5
+        .rx_pin     = GPIO_PIN(PORT_B, 7),  // Nano D5
+        .tx_pin     = GPIO_PIN(PORT_B, 6),	// Nano D4
         .rx_af      = GPIO_AF7,
         .tx_af      = GPIO_AF7,
         .bus        = APB2,

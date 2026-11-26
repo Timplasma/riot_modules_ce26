@@ -16,9 +16,13 @@
 #ifndef _GPS_UART_H
 #define _GPS_UART_H
 
+#include <stdint.h>
+
 int gps_start(const unsigned dev, const uint32_t baud);
 void gps_restart(void);
 void gps_power_off_on(void);
 int gps_cmd(int argc, char **argv);
+uint32_t gps_uart_get_rx_bytes(void);
+uint32_t gps_uart_get_rx_dropped_bytes(void);
 
 #endif
