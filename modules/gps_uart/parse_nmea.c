@@ -17,7 +17,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include <time.h>
-#include <inttypes.h>
 
 #include "mutex.h"
 #include "ztimer.h"
@@ -681,8 +680,6 @@ void gps_print(void) {
 		printf("WARN: GNSS no fix\n");
 	}
 
-	printf("INFO: GNSS UART rx=%" PRIu32 " dropped=%" PRIu32 "\n",
-			gps_uart_get_rx_bytes(), gps_uart_get_rx_dropped_bytes());
 	printf("INFO: GNSS Stats valid=%lu badchecksum=%lu error=%lu unknown=%lu\n",
 			parse_nmea_global_valid, parse_nmea_global_badchecksum,
 			parse_nmea_global_error, parse_nmea_global_unknown);

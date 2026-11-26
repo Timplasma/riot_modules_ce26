@@ -60,7 +60,6 @@
 #endif
 
 static volatile uint32_t gps_rx_bytes = 0;
-static volatile uint32_t gps_rx_dropped_bytes = 0;
 
 typedef struct {
 	uint8_t rx_mem[UART_BUFSIZE];
@@ -98,16 +97,6 @@ static void rxs_cb(void *arg)
 
 bool stop_gps_uart = false;
 
-uint32_t gps_uart_get_rx_bytes(void)
-{
-    return gps_rx_bytes;
-}
-
-uint32_t gps_uart_get_rx_dropped_bytes(void)
-{
-    return gps_rx_dropped_bytes;
-}
-
 static void rx_cb(void *arg, uint8_t c)
 {
     gps_rx_bytes++;
@@ -115,7 +104,7 @@ static void rx_cb(void *arg, uint8_t c)
     uart_t dev = (uart_t)(uintptr_t)arg;
 
     if (tsrb_full(&ctx[dev].rx_buf)) {
-        gps_rx_dropped_bytes++;
+        // drop char
     } else {
         tsrb_add_one(&ctx[dev].rx_buf, c);
     }
