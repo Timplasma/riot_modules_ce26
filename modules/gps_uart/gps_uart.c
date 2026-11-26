@@ -269,37 +269,37 @@ int gps_start(const unsigned dev, const uint32_t baudrate)
     return 0;
 }
 
-int gps_restart(void)
-{
-    printf("INFO: Restart UART_DEV(%i) at BAUD %"PRIu32"\n", gps_dev, gps_baudrate);
+// int gps_restart(void)
+// {
+//     printf("INFO: Restart UART_DEV(%i) at BAUD %"PRIu32"\n", gps_dev, gps_baudrate);
 
-    tsrb_clear(&(ctx[gps_dev].rx_buf));
+//     tsrb_clear(&(ctx[gps_dev].rx_buf));
 
-    /* initialize UART */
-    gps_power_off_on();
+//     /* initialize UART */
+//     gps_power_off_on();
 
-#ifdef GPS_POWER_PIN
-    printf("INFO: GPS Power off\n");
-	_gnss_power_off();
-    printf("INFO: GPS Power on\n");
-	_gnss_power_on();
-#endif
+// #ifdef GPS_POWER_PIN
+//     printf("INFO: GPS Power off\n");
+// 	_gnss_power_off();
+//     printf("INFO: GPS Power on\n");
+// 	_gnss_power_on();
+// #endif
 
 
-#ifdef GPS_RESET_PIN
-    printf("INFO: GPS Reset\n");
-	_gnss_reset();
-#endif
+// #ifdef GPS_RESET_PIN
+//     printf("INFO: GPS Reset\n");
+// 	_gnss_reset();
+// #endif
 
-#ifdef GPS_STANDBY_PIN
-    printf("INFO: GPS Standby\n");
-	_gnss_standby();
-    printf("INFO: GPS Wakeup\n");
-	_gnss_wakeup();
-#endif
+// #ifdef GPS_STANDBY_PIN
+//     printf("INFO: GPS Standby\n");
+// 	_gnss_standby();
+//     printf("INFO: GPS Wakeup\n");
+// 	_gnss_wakeup();
+// #endif
 
-   return 0;
-}
+//    return 0;
+// }
 
 static void _gps_cmd_usage(int argc, char **argv) {
 	(void)argc;
